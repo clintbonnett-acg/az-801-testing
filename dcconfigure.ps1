@@ -11,7 +11,6 @@ mkdir "C:\PS"
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/clintbonnett-acg/az-801-testing/main/adusersetup.ps1" -OutFile "C:\PS\adusersetup.ps1"
 
 $Trigger= New-ScheduledTaskTrigger -AtStartup
-$Trigger.Delay = 'PT1M'
 $User= "NT AUTHORITY\SYSTEM"
 $Action= New-ScheduledTaskAction -Execute "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -Argument "-ExecutionPolicy Bypass -File C:\PS\adusersetup.ps1"
 Register-ScheduledTask -TaskName "create ad account" -Trigger $Trigger -User $User -Action $Action -RunLevel Highest -Force
