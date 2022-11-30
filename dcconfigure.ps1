@@ -17,7 +17,7 @@ Register-ScheduledTask -TaskName "create ad account" -Trigger $Trigger -User $Us
 
 $Task = Get-ScheduledTask -TaskName 'create ad account'
 $Task.Triggers.Repetition.Interval = 'PT1M'
-$Task.Triggers.Repetition.Duration = 'PT10M'
+$Task.Triggers.Repetition.Duration = 'PT5M'
 $Task | Set-ScheduledTask
 
 Install-ADDSForest -DomainName "corp.awesome.com" -SafeModeAdministratorPassword $pw -DomainNetBIOSName 'CORP' -InstallDns -Force
