@@ -15,15 +15,16 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies
 Do {
 
     Try {    
+        $Error.Clear() 
         $join = Add-Computer -DomainName $DomainName -Credential $credential -Force
-        Start-Sleep -s 10 
+        Start-Sleep -s 5 
     }
 
     Catch {
         $Error[0].Exception
     }
 
-} While ( $join.HasSucceeded -ne $true )
+} While ( $Error.Count -eq 1 )
 
 Restart-Computer -Timeout 20
 exit
