@@ -29,5 +29,5 @@ Do {
 
 } While ( $Error.Count -eq 1 )
 
-Restart-Computer -Timeout 20
+shutdown.exe /r /t 20
 exit
