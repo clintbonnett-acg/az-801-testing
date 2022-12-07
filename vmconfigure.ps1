@@ -11,6 +11,8 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "DisableNotificationCenter" -Value 1
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "HideSCAVolume" -Value 1
 
+New-NetFirewallRule -DisplayName "AzureILBProbe" -Direction Inbound -LocalPort 59999 -Protocol TCP -Action Allow
+
 Enable-PSRemoting -Force
 winrm set winrm/config/service/auth '@{Kerberos="true"}'
 
